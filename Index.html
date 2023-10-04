@@ -11,13 +11,10 @@
 
   <h3>Select columns to import:</h3>
   <div id="column-checkboxes"></div>
-  
-  <h3>Import Options:</h3>
-  <label><input type="checkbox" id="appendData"> Append Data (unchecked means overwrite)</label><br>
 
-  <button onclick="importCSV()">Import</button>
-
-  <script type = "text/javascript">
+  <script>
+    var data;
+    var cols = [1,2];
     function allowDrop(event) {
       event.preventDefault();
     }
@@ -29,13 +26,13 @@
         var reader = new FileReader();
         reader.onload = function (e) {
           var csvData = e.target.result;
+          data = csvData;
           displayColumnCheckboxes(csvData);
+          //importCSV(csvData);
         };
         reader.readAsText(file);
       }
     }
-
-
 
     function displayColumnCheckboxes(csvData) {
       var columnHeaders = csvData.split('\n')[0].split(',');
@@ -44,62 +41,28 @@
         columnCheckboxesHTML += `<label><input type="checkbox" id="col${i}"> ${columnHeaders[i]}</label><br>`;
       }
       document.getElementById('column-checkboxes').innerHTML = columnCheckboxesHTML;
-      alert(columnHeaders.toString());
-      google.script.run.withSuccessHandler(function(response) {alert(response);}).importCSVData(csvData,[1,2], appendData);
+
     }
 
-    function importCSV() {
-      alert('inside importcsv');
-      google.script.run.withSuccessHandler(function(response) {alert(response);}).importCSVData(csvData,[1,2], appendData);
+    function importCSV(csvData) {
       var selectedColumns = [];
       var columnCount = document.getElementById('column-checkboxes').childElementCount;
+
       for (var i = 0; i < columnCount/2; i++) {
         if (document.getElementById(`col${i}`).checked) {
           selectedColumns.push(i);
         }
       }
-      alert(selectedColumns.toString());
 
       if (selectedColumns.length === 0) {
         alert('Please select at least one column for import.');
         return;
       }
 
-      alert('after if works');
-      var columnHeaders = csvData.split('\n')[0].split(',');
-      alert(columnHeaders.toString());
-
-    }
-
-    function importCSV_selected(csvData,selectedColumns){
-      alert('inside importcsv_selected');
-    }
-
-    function jmd(csvData,selectedColumns){
-      alert('inside jmd');
-      var sheet = SpreadsheetApp.getActiveSheet();
-      var rows = csvData.split('\n');
-      var dataToAppend = [];
-      var columnHeaders = rows[0].split(','); // Assuming the first row contains headers
-
-      for (var i = 1; i < rows.length; i++) {
-        var rowData = rows[i].split(',');
-        var selectedRowData = [];
-        
-        for (var j = 0; j < selectedColumns.length; j++) {
-          var columnIndex = selectedColumns[j];
-          selectedRowData.push(rowData[columnIndex]);
-        }
-        
-        dataToAppend.push(selectedRowData);
-      }
-      
-      // Add headers to the data
-      dataToAppend.unshift(selectedColumns.map(function(index) { return columnHeaders[index]; }));
-      
-      sheet.getRange(sheet.getLastRow() + 1, 1, dataToAppend.length, dataToAppend[0].length).setValues(dataToAppend);
-
+      google.script.run.withSuccessHandler(function(response) {alert(response);}).importCSVData(csvData,selectedColumns);
     }
   </script>
+
+  <button onclick="importCSV(data)">Import</button>
 </body>
 </html>
