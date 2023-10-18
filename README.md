@@ -10,6 +10,7 @@ Basic familiarity with HTML, JavaScript, and Google Apps Script.
 Access to the Google Apps Script editor.
 
 ### Steps
+
 #### Step 1: Set up your Google Sheets Document
 
 Start by opening Google Sheets and create a new or use an existing spreadsheet where you want to import CSV data.
@@ -34,35 +35,35 @@ Copy the HTML file codes into the .html file.
 
 Save your HTML file and open it in a web browser.
 
-Step 1: Drag and Drop the CSV File
+ - Drag and Drop the CSV File
 
 Locate a designated area (usually with instructions like "Drag & drop a CSV file here") on the HTML page.
 Drag and drop the CSV file you want to import onto this area. The content of the CSV file will be read and processed.
 
-Step 2: Select Columns for Import
+ - Select Columns for Import
 
 In the HTML page, you may see a list of checkboxes corresponding to the columns in the CSV file.
 Select the checkboxes that correspond to the columns you want to import.
-Step 3: Specify Import Options
+ - Specify Import Options
 
 In the input fields, provide additional import options:
 Choose which columns you want to add to the active Google sheet.
 Choose whether you want to append data (add to existing data) or overwrite data (replace existing data) in the specified range.
 
-Step 4: Initiate the Import
+ - Initiate the Import
 
 Once you've selected columns and configured the import options, click the "Import" button on the HTML page.
 
-Step 5: Review the Result
+ - Review the Result
 
 The HTML page will display a message or notification regarding the status of the CSV import. Typically, it will indicate whether the import was successful or if there were any issues.
 
-Step 6: Verify the Import in Google Sheets
+ - Verify the Import in Google Sheets
 
 Open your Google Sheets document and navigate to the specified sheet and range you provided in the import options.
 Check to see if the imported data has been added or overwritten as per your selections.
 
-Step 7: Troubleshoot, if Necessary
+ - Troubleshoot, if Necessary
 
 If you encounter any issues during the import, refer to any provided error messages or contact me for assistance.
 
