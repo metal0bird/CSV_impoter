@@ -68,4 +68,9 @@ Check to see if the imported data has been added or overwritten as per your sele
 If you encounter any issues during the import, refer to any provided error messages or contact me for assistance.
 
 
+### Future add ons 
+- [ ] choose which sheet to add data to
+- [ ] option to add data from a specific cell location
+- [ ] option to filter data before updating in sheets
+- [ ] optimize it for larger file size
 
